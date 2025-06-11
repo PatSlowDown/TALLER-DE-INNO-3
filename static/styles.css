@@ -1,0 +1,471 @@
+:root {
+  --primary: #58CC02;
+  --primary-dark: #47A701;
+  --gray: #ff8e1f;
+  --text: #3c3c3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Buttons */
+.button {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.button:hover {
+  background: var(--primary-dark);
+}
+.button.secondary {
+  background: #e0e0e0;
+  color: var(--text);
+}
+.button.secondary:hover {
+  background: #cacaca;
+}
+
+/* ───────────────────────── Sidebar */
+aside {
+  margin-top: 60px;
+  width: 450px;
+  background: #ffffff;
+  border-right: 2px solid #ccc;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: left 0.3s;
+}
+
+.cap {
+  font-size: 1.3rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #0c4a81;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+nav li a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+nav li a:hover,
+nav li a.active {
+  background: #0891b2;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+/* ───────────────────────── Main */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;  /* Centra el contenido verticalmente */
+}
+.topbar {
+  position: fixed;  /* Fija la barra en la parte superior */
+  top: 0;  /* Asegura que esté en la parte superior */
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #fff;
+  border-bottom: 4px solid #0891b2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+.xp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #FFE6C7;
+}
+.user img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.map-container {
+  width: 80%;  /* Ajusta el ancho según el espacio que desees */
+  max-width: 1200px;  /* Limita el ancho máximo si lo necesitas */
+  margin: 0 auto;  /* Centra el contenedor horizontalmente */
+  border: 1px solid #ccc;  /* Bordes negros */
+  border-radius: 15px;  /* Bordes redondeados */
+  background-color: #fff;  /* Fondo blanco para el contenedor */
+  margin-top: 50px;
+}
+
+/* ───────────────────────── Gamemap vertical */
+.map {
+  justify-content: center;
+  background-color: #edfeff;
+  overflow-y: auto;
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.5rem; /* mayor distancia para nodos más grandes */
+}
+
+.checkpoint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Estilo para el nodo */
+.node {
+  position: relative;
+  width: 500px; /* más grande */
+  height: 250px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column; /* Apilar los elementos verticalmente */
+  align-items: center;    /* Centrar los elementos de forma horizontal */
+  justify-content: center; /* Centrar los elementos de forma vertical */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+.node:hover {
+  transform: translateY(-4px);
+}
+
+/* Conector */
+.checkpoint:not(:last-child) .node::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4.5rem; /* coincide con el gap */
+  background: #0891b2;
+}
+
+.checkpoint.completed .node {
+  background: #B5FCCD;
+  color: #000000;
+}
+.checkpoint.current .node {
+  border: 4px solid #0891b2;
+}
+.checkpoint.locked .node {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ───────────────────────── Learning Capsule layout */
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.capsule-swiper {
+  width: 100%;
+  max-width: 1500px;
+  padding: 2rem;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.capsule {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  width: 1400px;
+}
+.capsule-content {
+  flex: 1;
+}
+.capsule-media {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capsule-media img {
+  width: 100%;  /* Asegura que la imagen ocupe todo el ancho disponible */
+  height: auto; /* Mantiene las proporciones de la imagen */
+  object-fit: contain; /* Asegura que la imagen se ajuste sin deformarse */
+  border-radius: 8px; /* Bordes redondeados opcionales */
+}
+
+@media (max-width: 800px) {
+  .capsule {
+    flex-direction: column;
+  }
+  .capsule-media {
+    order: -1;
+  }
+}
+
+.caption {
+  border-color: #000000;
+}
+
+/* ───────────────────────── Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 20;
+}
+.modal-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.modal .actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* Estilo para el contenedor de la lección y XP */
+.node-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #22c55e;
+  border-radius: 30px;
+  padding: 10px;
+  margin-bottom: 10px;  /* Espacio entre el contenedor y el nodo */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+
+}
+.module-description {
+  font-size: 1rem;
+  color: #555;  /* Gris oscuro para el texto */
+  font-weight: normal;
+  line-height: 1.5;
+  text-align: center;
+  display: block;
+}
+
+.custom-button {
+  width: 80%;
+  background-color: #0891b2; /* Verde por defecto, puedes cambiar el color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px; /* Espacio entre la descripción y el botón */
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.custom-button:hover {
+  background-color: #076d86; /* Color más oscuro cuando el usuario pasa el mouse */
+}
+
+/* ───────────────────────── Mobile sidebar toggle */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+@media (max-width: 900px) {
+  aside {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+  }
+  aside.open {
+    left: 0;
+  }
+  .menu-btn {
+    display: block;
+  }
+}
+
+/* Swiper pagination style tweak */
+.swiper-pagination-bullet {
+  background: var(--primary-dark);
+  opacity: 0.4;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* ───────────────────────── Exam options */
+.options {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.options li {
+  background: #f0f0f0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.options input {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+/* Back button */
+.back-btn{
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 100px;
+  height: 100px;
+  background: #454545;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  z-index: 30;
+}
+.back-btn:hover{ background: #7a7979; }
+
+/* Arrastrar en los examenes */
+
+.sortable-list {
+  width: 425px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.sortable-list .item {
+  list-style: none;
+  display: flex;
+  cursor: move;
+  background: #fff;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px 13px;
+  margin-bottom: 11px;
+  border: 1px solid #ccc;
+  justify-content: space-between;
+}
+
+.item .details {
+  display: flex;
+  align-items: center;
+}
+
+.item .details img {
+  height: 43px;
+  width: 43px;
+  pointer-events: none;
+  margin-right: 12px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.item .details span {
+  font-size: 1.13rem;
+}
+
+.item i {
+  color: #474747;
+  font-size: 1.13rem;
+}
+
+.item.dragging {
+  opacity: 0.6;
+}
+
+.item.dragging :where(.details, i) {
+  opacity: 0;
+}
