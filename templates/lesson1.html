@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AprendeTech – Prototipo</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- Back button -->
+  <a href="{{ url_for('index') }}" class="back-btn" aria-label="Volver">← Volver</a>
+
+  <main class="page-center">
+    <!-- Swiper container -->
+    <div class="swiper capsule-swiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <section class="capsule">
+            <div class="capsule-content">
+              <h2>Crear un nuevo proyecto y agregar componentes básicos</h2>
+              <h4>
+                Objetivo: Aprender a crear un nuevo proyecto y agregar los componentes principales: nodos, tuberías, bombas y válvulas.
+              </h4>
+              <h4>Abre EPANET y crea un nuevo proyecto.
+
+                Agrega un nodo de demanda: Este es un punto donde se extrae el agua, como una casa o una zona.
+
+                Agrega una tubería: La tubería conecta los nodos entre sí. Puedes agregarla haciendo clic en un nodo y arrastrando hacia otro.
+
+                Agrega una bomba o válvula (opcional). Las bombas impulsan el agua en la red y las válvulas controlan el flujo.</h4>
+
+            </div>
+            <div class="capsule-media">
+              <img src="{{ url_for('static', filename='imgs/Epanet1.png') }}" alt="Imagen ilustrativa 1" />
+            </div>
+          </section>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <section class="capsule">
+            <div class="capsule-content">
+              <h2>Definir las propiedades de los componentes</h2>
+              <h4>Objetivo: Asignar propiedades a los componentes del sistema, como la demanda de agua en nodos y el diámetro de las tuberías.</h4>
+              <h4>Modificar la demanda de un nodo: Haz doble clic sobre un nodo, luego selecciona la opción para asignar una demanda de agua (por ejemplo, 100 litros por segundo).
+              Ajustar el diámetro de la tubería: Haz doble clic sobre la tubería y selecciona el diámetro que mejor se ajuste a la red. Un diámetro más grande permite mayor flujo de agua.
+              </h4>
+            </div>
+            <div class="capsule-media">
+              <img src="{{ url_for('static', filename='imgs/Epanet2.png') }}" alt="Imagen ilustrativa 2" />
+            </div>
+          </section>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <section class="capsule">
+            <div class="capsule-content">
+              <h2>Configurar los parámetros de simulación</h2>
+              <h4>Objetivo: Configurar la simulación para obtener resultados de flujo y presión.</h4>
+              <h4>Acceder a la pestaña de simulación: En EPANET, ve a "Simulación" y selecciona "Opciones de simulación".
+              Configurar la duración: Establece la duración y el intervalo de tiempo (por ejemplo, simular por 24 horas con intervalos de 1 hora).
+              Elegir estado estacionario o transitorio: Si solo quieres ver el flujo constante, selecciona "estado estacionario". Si quieres ver cómo cambia con el tiempo, selecciona "transitorio".
+              </h4>
+            </div>
+            <div class="capsule-media">
+              <img src="{{ url_for('static', filename='imgs/Epanet3.png') }}" alt="Imagen ilustrativa 3" />
+            </div>
+          </section>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <section class="capsule">
+            <div class="capsule-content">
+              <h2>Ejecutar y analizar la simulación</h2>
+              <h4>Objetivo: Ejecutar la simulación y comprender los resultados generados, como el flujo en las tuberías y la presión en los nodos.</h4>
+              <h4>Ejecutar la simulación: Haz clic en "Simular" para que EPANET calcule el comportamiento del sistema.
+              Analizar los resultados: Después de la simulación, revisa los resultados en las tablas y gráficos. Puedes ver el flujo en cada tubería y la presión en cada nodo.
+              Interpretar los resultados: Si el flujo es bajo en alguna tubería o la presión es insuficiente en algún nodo, es posible que necesites ajustar el diámetro de las tuberías o cambiar la demanda de agua.</h4>
+              <button class="button open-modal">Ir al Examen</button>
+            </div>
+            <div class="capsule-media">
+              <img src="{{ url_for('static', filename='imgs/Epanet4.png') }}" alt="Imagen ilustrativa 4" />
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Pagination bullets -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </main>
+
+  <!-- Modal de confirmación -->
+  <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal">
+      <h3 id="modalTitle">¿Estás seguro de continuar?</h3>
+      <div class="actions">
+        <button id="cancelModal" class="button secondary">Cancelar</button>
+        <a href="{{ url_for('exam1') }}" class="button primary">Sí, continuar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

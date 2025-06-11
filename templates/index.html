@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AprendeTech – Prototipo</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- ───────────────────────── Sidebar -->
+  <aside id="sidebar">
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Capacitación EPANET</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ───────────────────────── Main -->
+  <main>
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn">☰</button>
+      <div class="logo"><span>💼</span> AprendeTech</div>
+      <!-- Barra de progreso -->
+      <div class="progress-container">
+        <p>Experiencia: 💎 {{ xp }} / 45</p>
+        <progress id="progressBar" value="{{ xp }}" max="45"></progress>
+      </div>
+       <a href="{{ url_for('complete_node') }}">Completar un nodo</a>
+
+      <div class="user">
+        <img src="https://i.pravatar.cc/150?img=3" alt="Avatar" />
+        <span>Apot</span>
+      </div>
+    </div>
+
+    <!-- Mostrar los nodos -->
+    <!-- Mostrar los nodos -->
+    <div class="map-container">
+      <div class="map">
+        <div class="checkpoint {{ nodos[0].class }}">
+          <div class="node-header">
+            <span class="caption">Lección 1 - {{ nodos[0].xp_required }} XP</span>
+          </div>
+          <a class="node" href="{{ url_for('lesson', lesson_id=1) }}">
+            <span class="cap">💼 Introducción y creación de un modelo básico </span>
+            <p class="module-description">Aprende a crear un proyecto en EPANET, agregar componentes básicos (nodos, tuberías, bombas) y ejecutar una simulación de flujo y presión.</p>
+            <button class="custom-button">Comenzar</button>  <!-- Este es el botón editable -->
+          </a>
+        </div>
+
+        <div class="checkpoint {{ nodos[1].class }}">
+          <div class="node-header">
+            <span class="caption">Lección 2 - {{ nodos[1].xp_required }} XP</span>
+          </div>
+          <a class="node" href="{{ url_for('lesson', lesson_id=2) }}">
+            <span class="cap">🔒 Análisis de redes (Presión y flujo en detalle) </span>
+            <p class="module-description">Analiza la presión y el flujo en la red, identifica problemas y optimiza el diseño de la red de distribución de agua.</p>
+            <button class="custom-button">Comenzar</button>  <!-- Este es el botón editable -->
+          </a>
+        </div>
+
+        <div class="checkpoint {{ nodos[2].class }}">
+          <div class="node-header">
+            <span class="caption">Lección 3 - {{ nodos[2].xp_required }} XP</span>
+          </div>
+          <a class="node" href="{{ url_for('lesson', lesson_id=3) }}">
+            <span class="cap">🔒 Calidad del agua y análisis avanzado </span>
+            <p class="module-description">Simula y analiza la calidad del agua en la red, controlando la dispersión de contaminantes y optimizando su distribución.</p>
+            <button class="custom-button">Comenzar</button>  <!-- Este es el botón editable -->
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ───────────────────────── Scripts -->
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

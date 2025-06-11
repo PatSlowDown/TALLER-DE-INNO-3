@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AprendeTech – Prototipo</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="page-center">
+    <!-- Examen con desplazamiento hacia abajo -->
+    <section class="exam-section">
+      <!-- Pregunta 1 -->
+      <div class="question">
+        <h2>Pregunta 1</h2>
+        <p>¿Cuál de los siguientes comandos crea un entorno virtual en Python?</p>
+        <div class="sortable-list">
+          <div class="item" draggable="true">
+            <span>pip install virtualenv</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>python -m venv myenv</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>conda create -n myenv python=3.10</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>virtualenv activate</span>
+          </div>
+        </div>
+        <p>Arrastra la respuesta correcta a la zona de la derecha.</p>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question">
+        <h2>Pregunta 2</h2>
+        <p>Selecciona el método HTTP que se utiliza comúnmente para obtener datos de un servidor:</p>
+        <div class="sortable-list">
+          <div class="item" draggable="true">
+            <span>POST</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>GET</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>PUT</span>
+          </div>
+          <div class="item" draggable="true">
+            <span>DELETE</span>
+          </div>
+        </div>
+        <p>Arrastra la respuesta correcta a la zona de la derecha.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="scriptdrag.js"></script> <!-- Funcionalidad de drag and drop -->
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
